@@ -1,0 +1,84 @@
+{% extends 'AppBundle:default:layout.html.twig' %}
+{% block content %}
+	<div class="h832">
+    	<div class="innerDiv">
+    		{% if app.request.get('t') == 1 %}
+		<img src="{{ asset('assets/default/')}}images/page3Bg.jpg" class="abs bgImg">
+		<img src="{{ asset('assets/default/')}}images/q1Img.jpg" class="abs qImg">
+		<p class="abs qTxt">西班牙巴斯克地区最负盛名的美食是？</p>
+		<div class="abs qSel">
+		<a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn">Tapas</a><br>
+		<a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn" rel="right">Pintxos</a><br>
+		<a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn">Paella</a>
+		</div>
+          {% elseif app.request.get('t') == 2 %}
+          <img src="{{ asset('assets/default/')}}images/page3Bg.jpg" class="abs bgImg">
+            <img src="{{ asset('assets/default/')}}images/q2Img.jpg" class="abs qImg">
+            <p class="abs qTxt">海鲜饭起源于以下西班牙哪个城市？</p>
+            <div class="abs qSel">
+            	<a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn">巴塞罗那</a><br>
+                <a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn">塞维利亚</a><br>
+                <a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn" rel="right">瓦伦西亚</a>
+            </div>
+           {% elseif app.request.get('t') == 3 %}
+           <img src="{{ asset('assets/default/')}}images/page3Bg.jpg" class="abs bgImg">
+            <img src="{{ asset('assets/default/')}}images/q3Img.jpg" class="abs qImg">
+            <p class="abs qTxt">“寿司”一词最初指的是？</p>
+            <div class="abs qSel">
+            	<a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn" rel="right">米饭</a><br>
+                <a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn">鱼片</a><br>
+                <a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn">醋</a>
+            </div>
+           {% elseif app.request.get('t') == 4 %}
+           <img src="{{ asset('assets/default/')}}images/page3Bg.jpg" class="abs bgImg">
+            <img src="{{ asset('assets/default/')}}images/q4Img.jpg" class="abs qImg">
+            <p class="abs qTxt">通常，一顿法国大餐至少有几道菜？</p>
+            <div class="abs qSel">
+            	<a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn">4</a><br>
+                <a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn" rel="right">5</a><br>
+                <a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn">6</a>
+            </div>
+           {% elseif app.request.get('t') == 5 %}
+           <img src="{{ asset('assets/default/')}}images/page3Bg.jpg" class="abs bgImg">
+            <img src="{{ asset('assets/default/')}}images/q5Img.jpg" class="abs qImg">
+            <p class="abs qTxt">在印度饮食传统中，人们用哪一只手抓饭？</p>
+            <div class="abs qSel">
+            	<a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn">左手</a><br>
+                <a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn" rel="right">右手</a><br>
+                <a href="javascript:void(0);" onClick="getSel(this);" class="qSqlBtn">两手均可</a>
+            </div>
+          {% endif %}
+        </div>
+    </div>
+{% endblock %}
+{% block pageNote %}
+<div class="page pageError" style="display:none;">
+	<div class="h832">
+    	<div class="innerDiv">
+        	<img src="{{ asset('assets/default/')}}images/errorNote.png" class="abs bgImg">
+            <a href="javascript:void(0);" onClick="closeError();" class="abs page3Btn1"><img src="{{ asset('assets/default/')}}images/page3Btn1.png"></a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script>
+function getSel(es){
+	var ar=$(es).attr('rel');
+	if(ar=='right'){
+		window.location.href='{{ url("_answer",{t:app.request.get('t')}) }}';
+		}
+		else{
+			showError();
+			}
+	}
+	
+function showError(){
+	$('.pageError').fadeIn(1000);
+	}
+	
+function closeError(){
+	$('.pageError').fadeOut(1000);
+	}
+</script>
+{% endblock %}

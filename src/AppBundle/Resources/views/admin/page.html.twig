@@ -1,0 +1,55 @@
+{% extends 'AppBundle:admin:layout.html.twig' %}
+{% block content %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<!--<div class="panel-btns">
+			<a class="panel-close" href="">×</a>
+			<a class="minimize" href="">−</a>
+		</div>--><!-- panel-btns -->
+		<h3 class="panel-title">页面信息</h3></p>
+	</div>
+	<div class="panel-body">
+		<div class="table-responsive">
+			<!--<div id="table2_wrapper" class="dataTables_wrapper no-footer">
+			<div class="dataTables_length" id="table2_length"></div>
+			<div id="table2_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="table2"></label></div>-->
+			<table id="table2" class="table table-striped dataTable no-footer" role="grid" aria-describedby="table2_info">
+			<thead>
+			 <tr role="row">
+				<th tabindex="0" aria-controls="table2" rowspan="1" colspan="1" style="width: 100px;">ID</th>
+				<th tabindex="0" aria-controls="table2" rowspan="1" colspan="1" style="width: 120px;">标题</th>
+				<th tabindex="0" aria-controls="table2" rowspan="1" colspan="1" style="width: 120px;">父页面</th>
+				<th tabindex="0" aria-controls="table2" rowspan="1" colspan="1">内容</th>
+				<th tabindex="0" aria-controls="table2" rowspan="1" colspan="1" style="width: 200px;">创建时间</th>
+				<th ctabindex="0" aria-controls="table2" rowspan="1" colspan="1" style="width: 98px;">创建IP</th>
+				<th ctabindex="0" aria-controls="table2" rowspan="1" colspan="1" style="width: 100px;">操作</th>
+			</tr>
+		 </thead>
+		 <tbody>
+		 {% for page in pagination %}
+			<tr class="gradeA {% if loop.index is odd %} odd{% else %} even{% endif %}" role="row">
+				<td>{{ page.id }}</td>
+				<td>{{ page.title }}</td>
+                <td>--</td>
+				<td>{{ page.content | striptags() }}</td>
+				<td>{{ page.createTime | date("Y-m-d H:i:s") }}</td>
+				<td>{{ page.createIp }}</td>
+        <td><a href="{{ url('admin_page_edit', {'id': page.id}) }}" class="label label-default">编辑</a> <a href="{{ url('admin_page_delete', {'id': page.id}) }}" class="label label-default">删除</a></td>
+			</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+<div class="dataTables_info" id="table2_info" role="status" aria-live="polite">共{{ pagination.getTotalItemCount }}条记录</div>
+<div class="dataTables_paginate paging_full_numbers" id="table2_paginate">
+{{ knp_pagination_render(pagination) }}
+</div>
+</div>
+</div><!-- table-responsive -->
+
+</div><!-- panel-body -->
+</div>
+{% endblock %}
+{% block title %}会员管理{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'AppBundle:default:layout1.html.twig' %}
+{% block content %}
+	<div class="h832">
+    	<div class="innerDiv">
+    		<img src="{{ asset('assets/default/')}}images/page4Bg{{ app.request.get('t') }}.jpg">
+	        <div class="page4Btns">
+	        	<a href="{{ url('_next') }}"><img src="{{ asset('assets/default/')}}images/rightBtn1.jpg"></a>
+	            <a href="javascript:void(0);" onClick="showShareNote();"><img src="{{ asset('assets/default/')}}images/rightBtn2.jpg"></a>
+	        </div>
+        </div>
+    </div>
+{% endblock %}
+{% block pageNote %}
+<div class="page pageShareNote" style=" position:fixed; display:none;">
+	<div class="h832">
+    	<div class="innerDiv">
+        	<img src="{{ asset('assets/default/')}}images/shareNote.png" class="abs bgImg" onClick="closeShareNote();">
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script>
+function showShareNote(){
+	$('.pageShareNote').addClass('shareAct').show();
+	}
+	
+function closeShareNote(){
+	$('.pageShareNote').removeClass('shareAct').fadeOut(1000);
+	}
+</script>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'AppBundle:default:layout.html.twig' %}
+{% block content %}
+   <div class="h832">
+        <div class="innerDiv">
+            <img src="{{ asset('assets/default/')}}images/page2Bg.jpg" class="abs bgImg">
+            <a href="{{ url('_question',{t:'5'}) }}" class="abs sebBtn1{% if answer_log[5] == true %} on{% endif %}"><img src="{{ asset('assets/default/')}}images/space.gif" width="150" height="150"><img src="{{ asset('assets/default/')}}images/rightIcon.png" class="rightIcon"></a>
+            <a href="{{ url('_question',{t:'1'}) }}" class="abs sebBtn2{% if answer_log[1] == true %} on{% endif %}"><img src="{{ asset('assets/default/')}}images/space.gif" width="150" height="150"><img src="{{ asset('assets/default/')}}images/rightIcon.png" class="rightIcon"></a>
+            <a href="{{ url('_question',{t:'2'}) }}" class="abs sebBtn3{% if answer_log[2] == true %} on{% endif %}"><img src="{{ asset('assets/default/')}}images/space.gif" width="150" height="150"><img src="{{ asset('assets/default/')}}images/rightIcon.png" class="rightIcon"></a>
+            <a href="{{ url('_question',{t:'4'}) }}" class="abs sebBtn4{% if answer_log[4] == true %} on{% endif %}"><img src="{{ asset('assets/default/')}}images/space.gif" width="150" height="150"><img src="{{ asset('assets/default/')}}images/rightIcon.png" class="rightIcon"></a>
+            <a href="{{ url('_question',{t:'3'}) }}" class="abs sebBtn5{% if answer_log[3] == true %} on{% endif %}"><img src="{{ asset('assets/default/')}}images/space.gif" width="150" height="150"><img src="{{ asset('assets/default/')}}images/rightIcon.png" class="rightIcon"></a>
+            <a href="javascript:void(0);" class="page2Btn1 abs" onClick="showShareNote();"><img src="{{ asset('assets/default/')}}images/page2Btn1.png"></a>
+        </div>
+    </div>
+{% endblock %}
+{% block pageNote %}
+    <div class="page pageShareNote" style=" position:fixed; display:none;">
+    <div class="h832">
+        <div class="innerDiv">
+            <img src="{{ asset('assets/default/')}}images/shareNote.png" class="abs bgImg" onClick="closeShareNote();">
+        </div>
+    </div>
+</div>
+
+<div class="page pageNote" style=" position:fixed; display:none;">
+    <div class="h832">
+        <div class="innerDiv">
+            <img src="{{ asset('assets/default/')}}images/notePop.png" class="abs bgImg" onClick="closeNote();">
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+var noteTime;
+$(document).ready(function(){
+    var onNumb=$('.on').length;
+    if(onNumb<5){
+        showNote();
+        noteTime=setTimeout(function(){
+            closeNote();
+            },3000);
+        }
+    });
+
+function showShareNote(){
+    $('.pageShareNote').addClass('shareAct').show();
+    }
+    
+function closeShareNote(){
+    $('.pageShareNote').removeClass('shareAct').fadeOut(1000);
+    }
+    
+function showNote(){
+    $('.pageNote').fadeIn(1000);
+    }
+    
+function closeNote(){
+    clearTimeout(noteTime);
+    $('.pageNote').fadeOut(1000);
+    }
+</script>
+{% endblock %}

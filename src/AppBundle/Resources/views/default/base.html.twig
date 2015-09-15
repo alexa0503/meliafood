@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>{% block title %}美利亚{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="{{ asset('assets/default/css/common.css') }}" rel="stylesheet">
+    {% endblock %}
+    <script src="{{ asset('assets/default/js/jquery-1.9.1.min.js') }}"></script>
+    <script src="{{ asset('assets/default/js/common.js') }}"></script>
+    <!--移动端版本兼容 -->
+    <script type="text/javascript">
+        var phoneWidth =  parseInt(window.screen.width);
+        var phoneScale = phoneWidth/640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)){
+            var version = parseFloat(RegExp.$1);
+            if(version>2.3){
+                document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+            }else{
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+    <!--移动端版本兼容 end -->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        wx.config({
+            debug: false,
+            appId: '{{ app.session.get("wx_app_id") }}',
+            timestamp: '{{ app.session.get("wx_timestamp") }}',
+            nonceStr: '{{ app.session.get("wx_nonce_str") }}',
+            signature: '{{ app.session.get("wx_signature") }}',
+            jsApiList: [
+                // 所有要调用的 API 都要加到这个列表中
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage'
+            ]
+        });
+        wx.ready(function () {
+            wx.onMenuShareAppMessage({
+                title: '{{ wechat_title }}',
+                desc: '{{ wechat_desc }}',
+                link: '{{ app.session.get("wx_share_url") }}',
+                imgUrl: 'http://{{ app.request.host }}{{ asset("assets/default/") }}{{ wechat_img_url }}',
+                trigger: function (res) {
+                    // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                    //alert('用户点击发送给朋友');
+                },
+                success: function (res) {
+                    {% if app.session.get("wx_share_success_url") is not empty %}
+                    location.href = '{{ app.session.get("wx_share_success_url") }}';
+                    {% endif %}
+                },
+                cancel: function (res) {
+                    //alert('已取消');
+                },
+                fail: function (res) {
+                    //alert(JSON.stringify(res));
+                }
+            });
+            wx.onMenuShareTimeline({
+                title: '{{ wechat_title }}',
+                desc: '{{ wechat_desc }}',
+                link: '{{ app.session.get("wx_share_url") }}',
+                imgUrl: 'http://{{ app.request.host }}{{ asset("assets/default/") }}{{ wechat_img_url }}',
+                trigger: function (res) {
+                    // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                    //alert('用户点击发送给朋友');
+                },
+                success: function (res) {
+                    {% if app.session.get("wx_share_success_url") is not empty %}
+                    location.href = '{{ app.session.get("wx_share_success_url") }}';
+                    {% endif %}
+                },
+                cancel: function (res) {
+                    //alert('已取消');
+                },
+                fail: function (res) {
+                    //alert(JSON.stringify(res));
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}
+{% endblock %}
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?113b781a47ec5cd5ae366fb5352f09e0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

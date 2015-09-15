@@ -1,0 +1,45 @@
+{% extends 'AppBundle:default:layout.html.twig' %}
+{% block content %}
+   <div class="h832">
+    	<div class="innerDiv">
+        	<img src="{{ asset('assets/default/')}}images/page6Bg.jpg" class="abs bgImg">
+            <input type="text" class="abs infoTxt infoTxt1" id="username">
+            <input type="email" class="abs infoTxt infoTxt2" id="email">
+            <input type="tel" class="abs infoTxt infoTxt3" maxlength="11" id="mobile">
+            <a href="javascript:;" class="abs page5Btn1"><img src="{{ asset('assets/default/')}}images/page5Btn1.jpg"></a>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+	<script type="text/javascript">
+	$().ready(function(){
+		$('.page5Btn1').bind('click', function(){
+			var username = $.trim($('#username').val());
+			var email = $.trim($('#email').val());
+			var mobile = $.trim($('#mobile').val());
+			var reg1 = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;
+			var reg2 = /^1[0-9]{10}$/
+			if( username == ""){
+				alert("姓名不能为空~");
+			}
+			else if( !reg1.test(email)){
+				alert("Email不正确~");
+			}
+			else if( !reg2.test(mobile)) {
+				alert("手机号不正确~");
+			}
+			else{
+				var url = "{{ url('_form_post') }}";
+				$.post(url, {username: username, email: email, mobile: mobile}, function(data){
+					if(data.ret == 0)
+						location.href="{{ url('_result') }}";
+					else
+						alert(data.msg);
+				},"JSON");
+			}
+
+			return false;
+		})
+	})
+	</script>
+{% endblock %}
