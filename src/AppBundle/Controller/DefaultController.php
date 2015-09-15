@@ -66,6 +66,7 @@ class DefaultController extends Controller
         }
         return $this->render('AppBundle:default:intro.html.twig',array(
             'answer_log' => $answer_log,
+            'user' => $user
         ));
     }
     /**
