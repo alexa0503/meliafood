@@ -163,11 +163,11 @@ class DefaultController extends Controller
          if( null !== $t){
             $em = $this->getDoctrine()->getManager();
             $share_log = new Entity\ShareLog;
-            $form->setUser($user);
-            $form->setAnswerType($t);
-            $form->setCreateTime(new \DateTime("now"));
-            $form->setCreateIp($this->container->get('request')->getClientIp());
-            $em->persist($form);
+            $share_log->setUser($user);
+            $share_log->setAnswerType($t);
+            $share_log->setCreateTime(new \DateTime("now"));
+            $share_log->setCreateIp($this->container->get('request')->getClientIp());
+            $em->persist($share_log);
             $em->flush();
         }
         return $this->render('AppBundle:default:form.html.twig');

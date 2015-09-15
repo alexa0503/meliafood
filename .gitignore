@@ -21,3 +21,5 @@
 !bin/console
 !bin/symfony_requirements
 /vendor/
+/src/AppBundle/Wechat/access_token.json
+/src/AppBundle/Wechat/jsapi_ticket.json
