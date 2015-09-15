@@ -296,10 +296,10 @@ class WechatUser
     /**
      * Add logs
      *
-     * @param \AppBundle\Entity\LikeLog $logs
+     * @param \AppBundle\Entity\AnswerLog $logs
      * @return WechatUser
      */
-    public function addLog(\AppBundle\Entity\LikeLog $logs)
+    public function addLog(\AppBundle\Entity\AnswerLog $logs)
     {
         $this->logs[] = $logs;
 
@@ -309,9 +309,9 @@ class WechatUser
     /**
      * Remove logs
      *
-     * @param \AppBundle\Entity\LikeLog $logs
+     * @param \AppBundle\Entity\AnswerLog $logs
      */
-    public function removeLog(\AppBundle\Entity\LikeLog $logs)
+    public function removeLog(\AppBundle\Entity\AnswerLog $logs)
     {
         $this->logs->removeElement($logs);
     }
