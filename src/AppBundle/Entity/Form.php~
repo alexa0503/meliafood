@@ -51,56 +51,79 @@ class Form
     }
 
     /**
-     * Set user
+     * Set username
      *
-     * @param integer $user
-     * @return ShareLog
+     * @param string $username
+     * @return Form
      */
-    public function setUser($user)
+    public function setUsername($username)
     {
-        $this->user = $user;
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get user
+     * Get username
      *
-     * @return integer 
+     * @return string 
      */
-    public function getUser()
+    public function getUsername()
     {
-        return $this->user;
+        return $this->username;
     }
 
     /**
-     * Set answerType
+     * Set email
      *
-     * @param integer $answerType
-     * @return ShareLog
+     * @param string $email
+     * @return Form
      */
-    public function setAnswerType($answerType)
+    public function setEmail($email)
     {
-        $this->answerType = $answerType;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get answerType
+     * Get email
      *
-     * @return integer 
+     * @return string 
      */
-    public function getAnswerType()
+    public function getEmail()
     {
-        return $this->answerType;
+        return $this->email;
+    }
+
+    /**
+     * Set mobile
+     *
+     * @param string $mobile
+     * @return Form
+     */
+    public function setMobile($mobile)
+    {
+        $this->mobile = $mobile;
+
+        return $this;
+    }
+
+    /**
+     * Get mobile
+     *
+     * @return string 
+     */
+    public function getMobile()
+    {
+        return $this->mobile;
     }
 
     /**
      * Set createTime
      *
      * @param \DateTime $createTime
-     * @return ShareLog
+     * @return Form
      */
     public function setCreateTime($createTime)
     {
@@ -123,7 +146,7 @@ class Form
      * Set createIp
      *
      * @param string $createIp
-     * @return ShareLog
+     * @return Form
      */
     public function setCreateIp($createIp)
     {
@@ -140,5 +163,28 @@ class Form
     public function getCreateIp()
     {
         return $this->createIp;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\WechatUser $user
+     * @return Form
+     */
+    public function setUser(\AppBundle\Entity\WechatUser $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\WechatUser 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

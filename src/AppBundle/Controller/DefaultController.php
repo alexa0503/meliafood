@@ -150,7 +150,6 @@ class DefaultController extends Controller
      */
     public function formAction($t = null)
     {
-       
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $qb = $em->getRepository('AppBundle:Form')

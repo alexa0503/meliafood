@@ -294,6 +294,29 @@ class WechatUser
     
 
     /**
+     * Set isFullAnswer
+     *
+     * @param boolean $isFullAnswer
+     * @return WechatUser
+     */
+    public function setIsFullAnswer($isFullAnswer)
+    {
+        $this->isFullAnswer = $isFullAnswer;
+
+        return $this;
+    }
+
+    /**
+     * Get isFullAnswer
+     *
+     * @return boolean 
+     */
+    public function getIsFullAnswer()
+    {
+        return $this->isFullAnswer;
+    }
+
+    /**
      * Add logs
      *
      * @param \AppBundle\Entity\AnswerLog $logs
@@ -324,29 +347,6 @@ class WechatUser
     public function getLogs()
     {
         return $this->logs;
-    }
-
-    /**
-     * Set isFullAnswer
-     *
-     * @param boolean $isFullAnswer
-     * @return WechatUser
-     */
-    public function setIsFullAnswer($isFullAnswer)
-    {
-        $this->isFullAnswer = $isFullAnswer;
-
-        return $this;
-    }
-
-    /**
-     * Get isFullAnswer
-     *
-     * @return boolean 
-     */
-    public function getIsFullAnswer()
-    {
-        return $this->isFullAnswer;
     }
 
     /**

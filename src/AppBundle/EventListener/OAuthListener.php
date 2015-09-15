@@ -37,19 +37,6 @@ class OAuthListener
             $session->set('open_id', 'o5mOVuGapiB3tzYysVcE4xstN3s4');
             $session->set('user_id', 1);
         }
-        else{
-            
-            $appId = $this->container->getParameter('wechat_appid');
-            $appSecret = $this->container->getParameter('wechat_secret');
-            $wechat = new Wechat\Wechat($appId, $appSecret);
-            $wx = (Object)$wechat->getSignPackage();
-            $session->set('wx_app_id', $wx->appId);
-            $session->set('wx_timestamp', $wx->timestamp);
-            $session->set('wx_nonce_str', $wx->nonceStr);
-            $session->set('wx_signature', $wx->signature);
-            $session->set('wx_share_url', $request->getUriForPath('/'));
-            $session->set('wx_share_success_url', null);
-        }
 
         if( $session->get('open_id') === null && $request->attributes->get('_route') !== '_callback' && stripos($request->attributes->get('_controller'), 'DefaultController') !== false){
             $app_id = $this->container->getParameter('wechat_appid');
@@ -60,6 +47,17 @@ class OAuthListener
             $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$app_id."&redirect_uri=".$callback_url."&response_type=code&scope=snsapi_userinfo&state=$state#wechat_redirect";
             $event->setResponse(new RedirectResponse($url));
         }
+        
+        $appId = $this->container->getParameter('wechat_appid');
+        $appSecret = $this->container->getParameter('wechat_secret');
+        $wechat = new Wechat\Wechat($appId, $appSecret);
+        $wx = (Object)$wechat->getSignPackage();
+        $session->set('wx_app_id', $wx->appId);
+        $session->set('wx_timestamp', $wx->timestamp);
+        $session->set('wx_nonce_str', $wx->nonceStr);
+        $session->set('wx_signature', $wx->signature);
+        $session->set('wx_share_url', $request->getUriForPath('/'));
+        $session->set('wx_share_success_url', null);
     }
 
 

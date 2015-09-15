@@ -51,98 +51,6 @@ class Form
     }
 
     /**
-     * Set user
-     *
-     * @param integer $user
-     * @return ShareLog
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return integer 
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set answerType
-     *
-     * @param integer $answerType
-     * @return ShareLog
-     */
-    public function setAnswerType($answerType)
-    {
-        $this->answerType = $answerType;
-
-        return $this;
-    }
-
-    /**
-     * Get answerType
-     *
-     * @return integer 
-     */
-    public function getAnswerType()
-    {
-        return $this->answerType;
-    }
-
-    /**
-     * Set createTime
-     *
-     * @param \DateTime $createTime
-     * @return ShareLog
-     */
-    public function setCreateTime($createTime)
-    {
-        $this->createTime = $createTime;
-
-        return $this;
-    }
-
-    /**
-     * Get createTime
-     *
-     * @return \DateTime 
-     */
-    public function getCreateTime()
-    {
-        return $this->createTime;
-    }
-
-    /**
-     * Set createIp
-     *
-     * @param string $createIp
-     * @return ShareLog
-     */
-    public function setCreateIp($createIp)
-    {
-        $this->createIp = $createIp;
-
-        return $this;
-    }
-
-    /**
-     * Get createIp
-     *
-     * @return string 
-     */
-    public function getCreateIp()
-    {
-        return $this->createIp;
-    }
-
-    /**
      * Set username
      *
      * @param string $username
@@ -209,5 +117,74 @@ class Form
     public function getMobile()
     {
         return $this->mobile;
+    }
+
+    /**
+     * Set createTime
+     *
+     * @param \DateTime $createTime
+     * @return Form
+     */
+    public function setCreateTime($createTime)
+    {
+        $this->createTime = $createTime;
+
+        return $this;
+    }
+
+    /**
+     * Get createTime
+     *
+     * @return \DateTime 
+     */
+    public function getCreateTime()
+    {
+        return $this->createTime;
+    }
+
+    /**
+     * Set createIp
+     *
+     * @param string $createIp
+     * @return Form
+     */
+    public function setCreateIp($createIp)
+    {
+        $this->createIp = $createIp;
+
+        return $this;
+    }
+
+    /**
+     * Get createIp
+     *
+     * @return string 
+     */
+    public function getCreateIp()
+    {
+        return $this->createIp;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\WechatUser $user
+     * @return Form
+     */
+    public function setUser(\AppBundle\Entity\WechatUser $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\WechatUser 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
