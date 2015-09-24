@@ -64,7 +64,7 @@
                 }
             });
             wx.onMenuShareTimeline({
-                title: '{{ wechat_title }}',
+                title: '{{ wechat_desc }}',
                 desc: '{{ wechat_desc }}',
                 link: '{{ app.session.get("wx_share_url") }}',
                 imgUrl: 'http://{{ app.request.host }}{{ asset("assets/default/") }}{{ wechat_img_url }}',
@@ -99,7 +99,7 @@ var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "//hm.baidu.com/hm.js?113b781a47ec5cd5ae366fb5352f09e0";
-  var s = document.getElementsByTagName("script")[0]; 
+  var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
