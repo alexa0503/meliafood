@@ -52,7 +52,7 @@ select,input,textarea{font-family:inherit; outline:none;}
 .qTxt{ word-break:break-all; left:138px; top:345px; width:365px; color:#000000; font-size:30px; line-height:36px;}
 .qSel{ left:138px; top:480px;}
 .qSqlBtn{ background:url(../images/selBtn.png) 0 0 no-repeat; padding:0 0 0 50px; height:34px; line-height:34px; color:#000000; font-size:30px; display:inline-block; margin-bottom:30px;}
-.page3Btn1{ left:229px; top:567px;}
+.page3Btn1{ left:202px; top:555px;}
 
 /*page4*/
 .page4Btns{ width:640px; padding:25px 0; position:fixed; left:50%; bottom:0; margin-left:-320px; background:#FFF; text-align:center;}

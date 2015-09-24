@@ -74,6 +74,18 @@ class DefaultController extends Controller
      */
     public function questionAction($t = 1)
     {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getEntityManager();
+        $qb = $em->getRepository('AppBundle:AnswerLog')
+            ->createQueryBuilder('a')
+            ->select('COUNT(a)')
+            ->where('a.user = :user AND a.answerType = :answerType')
+            ->setParameter('user', $user)
+            ->setParameter('answerType', $t);
+        $count = $qb->getQuery()->getSingleScalarResult();
+        if( $count > 0){
+            return $this->redirect( $this->generateUrl('_answer', array('t'=>$t)));
+        }
         return $this->render('AppBundle:default:question.html.twig',array(
         ));
     }
@@ -111,11 +123,8 @@ class DefaultController extends Controller
             $em->persist($answer_log);
             $em->flush();
 
+        }
             $session->set('wx_share_success_url', $this->generateUrl('_form',array('t'=>$t)));
-        }
-        else{
-            return $this->redirect( $this->generateUrl('_next'));
-        }
         
         return $this->render('AppBundle:default:answer.html.twig',array());
     }
@@ -131,7 +140,8 @@ class DefaultController extends Controller
             return $this->redirect( $this->generateUrl('_question',array('t'=>1)));
         }
         elseif( count($user->getLogs()) >= 5){
-            return $this->redirect($this->generateUrl('_form'));
+            return $this->redirect($this->generateUrl('_intro'));
+            //return $this->redirect($this->generateUrl('_form'));
         }
         else{
             $all_type = array(1,2,3,4,5);
@@ -146,7 +156,7 @@ class DefaultController extends Controller
 
 
     /**
-     * @Route("/form/{t}", name="_form")
+     * @Route("/form/list/{t}", name="_form")
      */
     public function formAction($t = null)
     {
