@@ -10,12 +10,8 @@
       <thead>
        <tr role="row">
         <th tabindex="0" aria-controls="table2" rowspan="1" colspan="1" style="width: 40px;">ID</th>
-        <th tabindex="0" aria-controls="table2" rowspan="1" colspan="1" style="width: 120px;">微信用户</th>
-           <th tabindex="0" aria-controls="table2" rowspan="1" colspan="1">作品</th>
-           <th tabindex="0" aria-controls="table2" rowspan="1" colspan="1" style="width: 120px;">是否兑换</th>
-           <th tabindex="0" aria-controls="table2" rowspan="1" colspan="1" style="width: 120px;">联系人</th>
-           <th tabindex="0" aria-controls="table2" rowspan="1" colspan="1" style="width: 120px;">联系电话</th>
-           <th tabindex="0" aria-controls="table2" rowspan="1" colspan="1" style="width: 120px;">联系地址</th>
+        <th tabindex="0" aria-controls="table2" rowspan="1" colspan="1">微信用户</th>
+        <th tabindex="0" aria-controls="table2" rowspan="1" colspan="1">回答类型</th>
         <th tabindex="0" aria-controls="table2" rowspan="1" colspan="1" style="width: 200px;">创建时间</th>
         <th tabindex="0" aria-controls="table2" rowspan="1" colspan="1"  style="width: 120px;">创建IP</th>
       </tr>
@@ -24,12 +20,8 @@
      {% for p in pagination %}
       <tr class="gradeA {% if loop.index is odd %} odd{% else %} even{% endif %}" role="row">
         <td>{{ p.id }}</td>
-        <td><img src="{{ p.user.headImg }}" title="{{ p.user.nickName }}" width="64" height="64"/></td>
-          <td><a href="{{ asset(p.imgUrl) }}" target="_blank"><img src="{{ asset(p.imgUrl) }}" style="max-width: 120px;max-height: 120px;"/></a></td>
-          <td>{% if p.isExchange == 1 %}是{% else %}否{% endif %}</td>
-          <td>{{ p.contactName }}</td>
-          <td>{{ p.contactTel }}</td>
-          <td>{{ p.contactAddress }}</td>
+        <td>{{ p.user.nickname }}</td>
+        <td>{{ p.answerType }}</td>
           <td>{{ p.createTime | date("Y-m-d H:i:s") }}</td>
           <td>{{ p.createIp }}</td>
       </tr>
@@ -46,7 +38,7 @@
 </div><!-- panel-body -->
 </div>
 {% endblock %}
-{% block title %}中奖作品{% endblock %}
+{% block title %}作品信息{% endblock %}
 {% block javascripts %}
 {{ parent() }}
 

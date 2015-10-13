@@ -19,18 +19,10 @@ class Builder extends ContainerAware
         $menu->setChildrenAttribute('id', 'leftmenu');
 
         $menu->addChild('Dashboard', array('route' => 'admin_index'));
-        $creation = $menu->addChild('creation', array('route' => 'admin_creation', 'label' => '作品信息'));
-        $creation->setAttribute('class', 'nav-parent');
-        $creation->setChildrenAttribute('class', 'children');
-        $creation->addChild('creation', array('route' => 'admin_creation',  'routeParameters' => array('fixed'=>'n'),  'label' => '用户作品'));
-        $creation->addChild('fixedCreation', array('route' => 'admin_creation', 'routeParameters' => array('fixed'=>'y'), 'label' => '首页作品'));
         $menu->addChild('user', array('route' => 'admin_user', 'label' => '授权用户'));
-        $log = $menu->addChild('creationLog', array('route' => 'admin_like_log', 'label' => '点赞日志'));
-        $log->setAttribute('class', 'nav-parent');
-        $log->setChildrenAttribute('class', 'children');
-        $log->addChild('likeLog', array('route' => 'admin_like_log','routeParameters' => array('fixed'=>'n'), 'label' => '用户作品'));
-        $log->addChild('fixedLikeLog', array('route' => 'admin_like_log', 'routeParameters' => array('fixed'=>'y'), 'label' => '首页作品'));
-        $menu->addChild('win', array('route' => 'admin_win', 'label' => '中奖作品'));
+        $menu->addChild('form', array('route' => 'admin_form', 'label' => '表单信息'));
+        $menu->addChild('answer', array('route' => 'admin_answer_log', 'label' => '答题日志'));
+        $menu->addChild('share', array('route' => 'admin_share_log', 'label' => '分享日志'));
         /*
         $catalog_log = $menu->addChild('lotteryLog', array('route' => 'admin_log', 'label' => '中奖记录'));
         $catalog_log->setAttribute('class', 'nav-parent');
